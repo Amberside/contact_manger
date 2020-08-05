@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-
 class Contact extends Component {
   render() {
     const { name, email, phone } = this.props.contact;
@@ -10,7 +9,8 @@ class Contact extends Component {
         <h2>
           { name }
         </h2>
-        
+        <p>{email}</p>
+        <p>{phone}</p>
       </div>
     )
   }
