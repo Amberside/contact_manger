@@ -34,7 +34,7 @@ class Contacts extends Component {
         }
       </div>
     )
-  }
-}
+  } // End of Render 
+} // End of Component Contacts
 
 export default Contacts
