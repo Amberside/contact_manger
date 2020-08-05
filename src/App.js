@@ -14,8 +14,6 @@ import About from './components/pages/About';
 
 class App extends Component {
   
- 
-  
   render(){
      // Create a Font awesome library
     library.add(faPencilAlt, faArrowCircleLeft, faAngleDown)
