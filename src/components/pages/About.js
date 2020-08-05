@@ -5,7 +5,7 @@ const About = () => {
   return (
     <div>
       <h2>About page</h2>
-      <FontAwesomeIcon icon='faPencilAlt' ></FontAwesomeIcon>
+      <FontAwesomeIcon icon={['fas', 'faPencilAlt']} ></FontAwesomeIcon>
     </div>
   )
 }
