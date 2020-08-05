@@ -19,6 +19,7 @@ class App extends Component {
             <Route exact path='/' component={Contacts} />
             <Route exact path='/about' component={About} />
           </Switch>
+        <Footer />
         </div>
       </Router>
     );
