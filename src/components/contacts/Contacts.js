@@ -22,13 +22,19 @@ class Contacts extends Component {
     phone: '(723)-942-3842'
   }];
   
+  deleteContact (id) {
+    console.log("Deleting contact: " + id);
+  }
+  
   render() {
     return (
       <div>
         <h1 className='display-4 text-primary'>Contact List</h1>
         {
           this.state.map(contact => (
-            <Contact key={contact.id} contact={contact} delContact={deleteContact}/>
+            <Contact key={contact.id} contact={contact} 
+              delContact={this.deleteContact.bind(this, contact.id)}
+            />
           ))
         }
       </div>
