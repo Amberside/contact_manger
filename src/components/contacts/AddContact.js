@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from 'react';
+import classnames from 'classnames';
+import { v4 as uuidv4 } from 'uuid';
 
 class AddContact extends Component {
   state = {
@@ -8,6 +10,48 @@ class AddContact extends Component {
     errors: {},
   };
   
+  onChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
+  
+  onSubmit = e => {
+    e.preventDefault();
+    // creating variables to store our state values.
+    const { name, email, phone } = this.state; // instead of typing this.state.name
+    
+    // Check for Errors
+    
+    if (name === ''){
+      // this sets errors.name state value
+      this.setState({ errors: {name: 'Name is required '}});
+      return; // this will stop the onSubmit from running
+    }
+    if (email === ''){
+      // this sets errors.name state value
+      this.setState({ errors: {email: 'Email is required '}});
+      return; // this will stop the onSubmit from running
+    }
+    if (phone === ''){
+      // this sets errors.name state value
+      this.setState({ errors: {phone: 'Phone is required '}});
+      return; // this will stop the onSubmit from running
+    }
+    // we call also use Bootstrap -isValid -isInvalid 
+    // we can change the classes dynamically. 
+    
+    // create a newContact object 
+    const newContact = {
+      id: uuidv4(),
+      name,
+      email,
+      phone
+    }
+     // send the newcontat to an api or state managment.
+    console.log(newContact);
+  }
+  
   render() {
     const { name, email, phone, errors } = this.state;
     return (
@@ -16,42 +60,42 @@ class AddContact extends Component {
         <div className="card mb-3">
           <div className="card-header">Add Contact</div>
           <div className="card-body">
-            <form >
+            <form onSubmit={this.onSubmit}>
               <div className="form-group">
                 <label>Name</label>
                 <input 
                   type="text"  
-                  className="form-control"  
+                  className={classnames("form-control", { 'is-invalid' : errors.name })  }
                   placeholder="Name"
                   name="name"
                   value={name}
                   onChange={this.onChange}
-                  error={errors.name}
                 />
+                {errors.name && <div className='invalid-feedback'>{errors.name}</div>}
               </div>
               <div className="form-group">
                 <label>Email</label>
                 <input 
-                  type="text"  
-                  className="form-control"  
+                  type="email"  
+                  className={classnames("form-control", { 'is-invalid' : errors.email })  }
                   placeholder="Email"
-                  name="Email"
+                  name="email"
                   value={email}
                   onChange={this.onChange}
-                  error={errors.email}
                 />
+                {errors.email && <div className='invalid-feedback'>{errors.email}</div>}
               </div>
               <div className="form-group">
                 <label>Phone</label>
                 <input 
                   type="text"  
-                  className="form-control"  
+                  className={classnames("form-control", { 'is-invalid' : errors.phone })  } 
                   placeholder="Phone"
                   name="phone"
                   value={phone}
                   onChange={this.onChange}
-                  error={errors.phone}
                 />
+                {errors.phone && <div className='invalid-feedback'>{errors.phone}</div>}
               </div>
               <input type="submit" value="Add Contact" className="btn btn-light btn-block" />
             </form>
