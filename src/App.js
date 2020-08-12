@@ -11,6 +11,7 @@ import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Contacts from './components/contacts/Contacts';
 import About from './components/pages/About';
+import Test from './components/test/Test'
 
 class App extends Component {
   
@@ -25,6 +26,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={Contacts} />
             <Route exact path='/about' component={About} />
+            <Route exact path='/test' component={Test} />
           </Switch>
         <Footer />
         </div>
