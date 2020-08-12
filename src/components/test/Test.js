@@ -34,7 +34,7 @@ export default class Test extends Component {
         <h1>Test Component</h1>
         <p>Page to test lifecycle methods</p>
         <p>{ message } </p>
-        <form>
+        <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label htmlFor="newMessage">New Message</label>
             <input 
@@ -47,7 +47,7 @@ export default class Test extends Component {
               onChange={this.onChange}
             />
           </div>
-          <button type="submit" className="btn btn-primary" onSubmit={this.onSubmit}>Submit</button>
+          <button type="submit" className="btn btn-primary">Submit</button>
         </form>
         
       </div>
