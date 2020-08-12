@@ -11,7 +11,7 @@ import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Contacts from './components/contacts/Contacts';
 import About from './components/pages/About';
-import Test from './components/test/Test'
+import Test from './components/test/Test';
 
 class App extends Component {
   

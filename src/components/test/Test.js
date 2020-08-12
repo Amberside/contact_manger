@@ -17,7 +17,7 @@ export default class Test extends Component {
   }
   
   onChange = e => {
-    this.state({
+    this.setState({
       [e.target.name]: e.target.value
     });
   }
