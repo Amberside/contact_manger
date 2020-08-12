@@ -3,7 +3,8 @@ import React, { Component } from 'react'
 import Contact from './Contact';
 
 class Contacts extends Component {
-  state = [{
+  state = {
+    contacts: [{
     id: 1,
     name: 'Jade Doe',
     email: 'jadedoe@gmail.com',
@@ -20,18 +21,19 @@ class Contacts extends Component {
     name: 'Alex Harry',
     email: 'alexharry@gmail.com',
     phone: '(723)-942-3842'
-  }];
-  
+  }]
+}
   deleteContact (id) {
     console.log("Deleting contact: " + id);
   }
   
   render() {
+    const {contacts} = this.state;
     return (
       <div>
         <h1 className='display-4 text-primary'>Contact List</h1>
         {
-          this.state.map(contact => (
+          contacts.map(contact => (
             // This passes the contact object to the Contact component
             <Contact key={contact.id} contact={contact} 
             // This is passing the deleteContact function to the Contact component
