@@ -6,6 +6,8 @@ const Header = props => {
   console.log(props);
   const { branding } = props;
   return (
+    // This is standard bootstrap navbar with one difference. 
+    // The <a> have been replaced with <Link> as this is how the react-router changes pages
     <nav className="navbar navbar-expand-sm navbar-dark bg-danger mb-3 py-3">
       <div className="container">
         <Link to="/" className="navbar-brand">{branding}</Link>
@@ -32,6 +34,8 @@ Header.defaultProps = {
   branding: 'My App'
 }
 
+// Prop types is a way for us to do type checking on the data being passed through
+// to the component
 Header.propTypes = {
   branding: PropTypes.string
 }
@@ -41,4 +45,4 @@ Header.propTypes = {
 //   fontSize: '50px'
 // }
 
-export default Header
+export default Header;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+// this is a component built to show lifecycle methods
 export default class Test extends Component {
   state = {
     message: 'Hello'

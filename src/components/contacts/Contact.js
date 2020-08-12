@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class Contact extends Component {
+  // This will render our contact object passed from contacts.
   render() {
     const { name, email, phone } = this.props.contact;
     return (

@@ -3,6 +3,8 @@ import classnames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
 
 class AddContact extends Component {
+  // This is the state for the component, 
+  // this is to store what data we get from the form
   state = {
     name: '',
     email: '',
@@ -10,12 +12,16 @@ class AddContact extends Component {
     errors: {},
   };
   
+  // This function will fire when a user types in an input box. 
+  // The e.target.name will be equal to the input element's name field 
+  // The e.target.value will be equal to the value in the input element.
   onChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
   }
-  
+
+  // this function will be called when the form is submitted.
   onSubmit = e => {
     e.preventDefault();
     // creating variables to store our state values.
