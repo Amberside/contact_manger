@@ -32,7 +32,9 @@ class Contacts extends Component {
         <h1 className='display-4 text-primary'>Contact List</h1>
         {
           this.state.map(contact => (
+            // This passes the contact object to the Contact component
             <Contact key={contact.id} contact={contact} 
+            // This is passing the deleteContact function to the Contact component
               delContact={this.deleteContact.bind(this, contact.id)}
             />
           ))
