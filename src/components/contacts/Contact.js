@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Contact extends Component {
   // This will render our contact object passed from contacts.
@@ -9,6 +10,9 @@ class Contact extends Component {
       <div className='card card-body mb-3'>
         <h2>
           { name }
+          <FontAwesomeIcon icon='sort-down'></FontAwesomeIcon>
+          <FontAwesomeIcon icon='pencil-alt'></FontAwesomeIcon>
+          <FontAwesomeIcon icon='times'></FontAwesomeIcon>
         </h2>
         <p>{email}</p>
         <p>{phone}</p>
