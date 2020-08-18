@@ -3,6 +3,15 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Contact extends Component {
+  state = {
+    showContactInfo: false
+  }
+  
+  onShowClick = e => {
+    console.log('OnShowClick');
+    this.setState({ showContactInfo: !this.state.showContactInfo });
+  }
+  
   // This will render our contact object passed from contacts.
   render() {
     const { name, email, phone } = this.props.contact;
@@ -10,9 +19,13 @@ class Contact extends Component {
       <div className='card card-body mb-3'>
         <h2>
           { name }
-          <FontAwesomeIcon icon='sort-down'></FontAwesomeIcon>
-          <FontAwesomeIcon icon='pencil-alt'></FontAwesomeIcon>
-          <FontAwesomeIcon icon='times'></FontAwesomeIcon>
+          <FontAwesomeIcon icon='sort-down' onClick={this.onShowClick}>
+            
+          </FontAwesomeIcon>
+          <FontAwesomeIcon icon='times' style={{ cursor: "pointer", float: "right", color: "red"  }}></FontAwesomeIcon>
+          {' '}
+          <FontAwesomeIcon icon='pencil-alt' style={{ cursor: "pointer", float: "right"  }}>
+          </FontAwesomeIcon>
         </h2>
         <p>{email}</p>
         <p>{phone}</p>
