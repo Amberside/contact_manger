@@ -17,6 +17,7 @@ class SingleContact extends Component {
     console.log("delete: " + id);
     // This calls the function in contacts.js (parent component) and will pass the id through.
     // this.props.delContact(id);
+    // dispatch({ type: 'DELETE_CONTACT', payload: id });
   }
   
   // This will render our contact object passed from contacts.
