@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import Contact from './Contact';
+import SingleContact from './SingleContact';
 
 class Contacts extends Component {
   // create the state for the component
@@ -29,6 +29,7 @@ class Contacts extends Component {
   // The deleteContact function
   deleteContact (id) {
     console.log("Deleting contact: " + id);
+    // add code here to change the state. 
   }
   
   render() {
@@ -41,9 +42,9 @@ class Contacts extends Component {
           // we are checking the contacts array for each of the contact objects
           contacts.map(contact => (
             // This passes the contact object to the Contact component
-            <Contact key={contact.id} contact={contact} 
+            <SingleContact key={contact.id} contact={contact} 
             // This is passing the deleteContact function to the Contact component
-              delContact={this.deleteContact.bind(this, contact.id)}
+              delContact={this.deleteContact.bind(contact.id)}
             />
           ))
         }
