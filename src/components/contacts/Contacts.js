@@ -4,27 +4,7 @@ import SingleContact from './SingleContact';
 
 class Contacts extends Component {
   // create the state for the component
-  state = {
-    // set up the contacts array with inital values.
-    contacts: [{
-      id: 1,
-      name: 'Jade Doe',
-      email: 'jadedoe@gmail.com',
-      phone: '(555)-444-5555'
-    },
-    {
-      id: 2,
-      name: 'Jack Blogs',
-      email: 'jackblogs@gmail.com',
-      phone: '(465)-345-3523'
-    },
-    {
-      id: 3,
-      name: 'Alex Harry',
-      email: 'alexharry@gmail.com',
-      phone: '(723)-942-3842'
-    }]
-  }
+  
   
   // The deleteContact function
   deleteContact = (id)  => {
@@ -33,6 +13,7 @@ class Contacts extends Component {
     // check the state and remove the item where State(contact.id) === id we pass through.
     // console.log(this.state);
     // console.log(this.state.contacts);
+    // dispatch ({ type: "DELETE_CONTACT", payload: id })
     this.setState({ 
       contacts: this.state.contacts.filter( (contact) => contact.id !== id )  
     });
