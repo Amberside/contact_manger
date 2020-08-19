@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import classnames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
+import { Consumer } from '../../context';
 
 class AddContact extends Component {
   // This is the state for the component, 
