@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Consumer } from '../../context';
 
@@ -41,8 +42,10 @@ class SingleContact extends Component {
                 >
                 </FontAwesomeIcon>
                 {' '}
-                <FontAwesomeIcon icon='pencil-alt' style={{ cursor: "pointer", float: "right"  }}>
-                </FontAwesomeIcon>
+                <Link to={`/contact/edit/${id}`}>
+                  <FontAwesomeIcon icon='pencil-alt' style={{ cursor: "pointer", float: "right"  }}>
+                  </FontAwesomeIcon>
+                </Link>
               </h2>
               { showContactInfo ? (
                 <ul className="list-group">
