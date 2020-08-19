@@ -7,6 +7,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faPencilAlt, faTimes, faHome, faPlus, faQuestion, faSortDown } from '@fortawesome/free-solid-svg-icons'
 
 // Import custom components
+import { Provider } from './context';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Contacts from './components/contacts/Contacts';
@@ -20,18 +21,20 @@ class App extends Component {
      // Create a Font awesome library
     library.add(faPencilAlt, faTimes, faHome, faPlus, faQuestion, faSortDown)
     return (
-      <Router>
-        <div className="App">
-          <Header branding='Contact Manager'/>
-          <Switch>
-            <Route exact path='/' component={Contacts} />
-            <Route exact path='/contact/add' component={AddContact} />
-            <Route exact path='/about' component={About} />
-            <Route exact path='/test' component={Test} />
-          </Switch>
-        <Footer />
-        </div>
-      </Router>
+      <Provider>
+        <Router>
+          <div className="App">
+            <Header branding='Contact Manager'/>
+            <Switch>
+              <Route exact path='/' component={Contacts} />
+              <Route exact path='/contact/add' component={AddContact} />
+              <Route exact path='/about' component={About} />
+              <Route exact path='/test' component={Test} />
+            </Switch>
+          <Footer />
+          </div>
+        </Router>
+      </Provider>
     );
   }
 }

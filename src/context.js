@@ -40,7 +40,7 @@ export class Provider extends Component {
     dispatch: action => {
       this.setState(state => reducer(state, action));
     }
-  };
+  }; // end of the state. 
   render(){
     return(
       <Context.Provider value={this.state}>
@@ -48,6 +48,6 @@ export class Provider extends Component {
       </Context.Provider>
     );
   }
-}
+} // end of provider
 
 export const Consumer = Context.Consumer;
