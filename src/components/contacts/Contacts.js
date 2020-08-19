@@ -27,9 +27,16 @@ class Contacts extends Component {
   }
   
   // The deleteContact function
-  deleteContact (id) {
+  deleteContact = (id)  => {
     console.log("Deleting contact: " + id);
     // add code here to change the state. 
+    // check the state and remove the item where State(contact.id) === id we pass through.
+    console.log(this.state);
+    console.log(this.state.contacts);
+    this.setState({ 
+      contacts: this.state.contacts.filter( (contact) => contact.id !== id )  
+    });
+    // the filter fuction returns another array, with the id that we passed through omitted.
   }
   
   render() {
