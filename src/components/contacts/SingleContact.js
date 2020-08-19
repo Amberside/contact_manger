@@ -14,11 +14,11 @@ class SingleContact extends Component {
     this.setState({ showContactInfo: !this.state.showContactInfo });
   }
   
-  delClick = (id) => {
+  delClick = (id, dispatch) => {
     console.log("delete: " + id);
     // This calls the function in contacts.js (parent component) and will pass the id through.
     // this.props.delContact(id);
-    // dispatch({ type: 'DELETE_CONTACT', payload: id });
+    dispatch({ type: 'DELETE_CONTACT', payload: id });
   }
   
   // This will render our contact object passed from contacts.
@@ -37,7 +37,7 @@ class SingleContact extends Component {
                 </FontAwesomeIcon>
                 {/* This onclick call the local delClick function */}
                 <FontAwesomeIcon icon='times' style={{ cursor: "pointer", float: "right", color: "red"  }}
-                  onClick={this.delClick.bind(this, id)}
+                  onClick={this.delClick.bind(this, id, dispatch)}
                 
                 >
                 </FontAwesomeIcon>

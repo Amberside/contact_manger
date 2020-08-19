@@ -23,7 +23,7 @@ class AddContact extends Component {
   }
 
   // this function will be called when the form is submitted.
-  onSubmit = e => {
+  onSubmit = (dispatch, e) => {
     e.preventDefault();
     // creating variables to store our state values.
     const { name, email, phone } = this.state; // instead of typing this.state.name
@@ -58,6 +58,7 @@ class AddContact extends Component {
      // send the newcontact to an api or state managment.
     console.log(newContact);
     // this is where we would call our dispatch function
+    dispatch({ type: 'ADD_CONTACT', payload: newContact});
   }
   
   render() {
@@ -72,7 +73,7 @@ class AddContact extends Component {
               <div className="card mb-3">
                 <div className="card-header">Add Contact</div>
                 <div className="card-body">
-                  <form onSubmit={this.onSubmit}>
+                  <form onSubmit={this.onSubmit.bind(this, dispatch)}>
                     <div className="form-group">
                       <label>Name</label>
                       <input 
