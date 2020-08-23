@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Consumer } from '../../context';
 
+
 class SingleContact extends Component {
   state = {
     showContactInfo: false
@@ -16,14 +17,18 @@ class SingleContact extends Component {
   
   delClick = (id, dispatch) => {
     console.log("delete: " + id);
+    // this if for the old way when we passed the the function through.
     // This calls the function in contacts.js (parent component) and will pass the id through.
     // this.props.delContact(id);
+    // we now dispatch our action to the reducer so it can update the state.
     dispatch({ type: 'DELETE_CONTACT', payload: id });
   }
   
   // This will render our contact object passed from contacts.
   render() {
+    // pull the variables from the props (as this is passed from the Contacts component)
     const { name, email, phone, id } = this.props.contact;
+    // Pull value out of the state.
     const { showContactInfo } = this.state;
     return (
       <Consumer>
@@ -32,18 +37,18 @@ class SingleContact extends Component {
           return (
             <div className='card card-body mb-3'>
               <h2>
-                { name }
+                { name }{' '}
                 <FontAwesomeIcon icon='sort-down' onClick={this.onShowClick} style={{ cursor: "pointer"}}>
                 </FontAwesomeIcon>
                 {/* This onclick call the local delClick function */}
-                <FontAwesomeIcon icon='times' style={{ cursor: "pointer", float: "right", color: "red"  }}
+                <FontAwesomeIcon icon='times' style={{ cursor: "pointer", float: "right", color: "red", marginLeft: '10px'  }}
                   onClick={this.delClick.bind(this, id, dispatch)}
-                
-                >
+                > 
                 </FontAwesomeIcon>
-                {' '}
+                
                 <Link to={`/contact/edit/${id}`}>
-                  <FontAwesomeIcon icon='pencil-alt' style={{ cursor: "pointer", float: "right"  }}>
+                <FontAwesomeIcon icon='pencil-alt' 
+                    style={{ cursor: "pointer", float: "right"  }}>
                   </FontAwesomeIcon>
                 </Link>
               </h2>

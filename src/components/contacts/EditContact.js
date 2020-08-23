@@ -3,31 +3,29 @@ import classnames from 'classnames';
 import { Consumer } from '../../context';
 
 class EditContact extends Component {
-  // This is the state for the component, 
-  // this is to store what data we get from the form
+  // The state only holds the errors as we are using refs to hold the values from the form
   state = {
-    name: '',
-    email: '',
-    phone: '',
     errors: {},
   };
   
-  // This function will fire when a user types in an input box. 
-  // The e.target.name will be equal to the input element's name field 
-  // The e.target.value will be equal to the value in the input element.
-  onChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  }
+  // create the refs to hold the values from the form.
+  nameInput = React.createRef();
+  emailInput = React.createRef();
+  phoneInput = React.createRef();
 
   // this function will be called when the form is submitted.
-  onSubmit = e => {
+  handleSubmit = (dispatch, e) => {
     e.preventDefault();
-    // creating variables to store our state values.
+    console.log("Submit: update")
+
+    // creating variables to store our values.
+    // Pull the id out of the url
     const { id } = this.props.match.params;
-    const { name, email, phone } = this.state; // instead of typing this.state.name
-    
+    // get the current value from the form using the refs we set up.
+    const name = this.nameInput.current.value;
+    const email = this.emailInput.current.value;
+    const phone = this.phoneInput.current.value;
+    console.log(name + ' ' + email + ' ' + phone)
     // Check for Errors
     
     if (name === ''){
@@ -48,31 +46,42 @@ class EditContact extends Component {
     // we call also use Bootstrap -isValid -isInvalid 
     // we can change the classes dynamically. 
     
-    // create a newContact object 
-    const newContact = {
+    // create a updated Contact object 
+    const updContact = {
       id,
       name,
       email,
       phone
     }
-     // send the newcontact to an api or state managment.
-    console.log(newContact);
+    
+     // send the updated contact to an api or state managment.
+    console.log(updContact);
     // this is where we would call our dispatch function
+    // dispatch our updated contact to the global state
+    dispatch({ type: 'UPDATE_CONTACT', payload: updContact});
+    // redirect the browser back to the contacts page ('/')
+    this.props.history.push("/");
   }
   
   render() {
-    const { name, email, phone, errors } = this.state;
+    // pull out the id from the url
+    const cid = this.props.match.params;
+    // pull the errors out of state.
+    const { errors } = this.state;
     return (
       <Consumer>
         { value => {
-          const { dispatch } = value;
+          const { dispatch, contacts } = value;
+          // get the contact from the state by finding the contact in the 
+          // contacts array by matching the cont.id to the cid from the url
+          const contact = contacts.find(cont => cont.id === cid.id);
           return (
             <Fragment>
               <h1 className="display-4 text-primary">Edit Contact</h1>
               <div className="card mb-3">
-                <div className="card-header">Edit Contact</div>
+                <div className="card-header">Update Contact</div>
                 <div className="card-body">
-                  <form onSubmit={this.onSubmit}>
+                  <form onSubmit={this.handleSubmit.bind(this, dispatch)}>
                     <div className="form-group">
                       <label>Name</label>
                       <input 
@@ -80,8 +89,11 @@ class EditContact extends Component {
                         className={classnames("form-control", { 'is-invalid' : errors.name })  }
                         placeholder="Name"
                         name="name"
-                        value={name}
-                        onChange={this.onChange}
+                        // set the default value for the form (contact.name)
+                        defaultValue={contact.name}
+                        // use the nameInput ref here
+                        ref={this.nameInput}
+                        
                       />
                       {errors.name && <div className='invalid-feedback'>{errors.name}</div>}
                     </div>
@@ -92,8 +104,11 @@ class EditContact extends Component {
                         className={classnames("form-control", { 'is-invalid' : errors.email })  }
                         placeholder="Email"
                         name="email"
-                        value={email}
-                        onChange={this.onChange}
+                        // set the default value for the form (contact.email)
+                        defaultValue={contact.email}
+                        // use the emailInput ref here
+                        ref={this.emailInput}
+                        
                       />
                       {errors.email && <div className='invalid-feedback'>{errors.email}</div>}
                     </div>
@@ -104,12 +119,14 @@ class EditContact extends Component {
                         className={classnames("form-control", { 'is-invalid' : errors.phone })  } 
                         placeholder="Phone"
                         name="phone"
-                        value={phone}
-                        onChange={this.onChange}
+                        // set the default value for the form (contact.phone)
+                        defaultValue={contact.phone}
+                        // use the phoneInput ref here
+                        ref={this.phoneInput}
                       />
                       {errors.phone && <div className='invalid-feedback'>{errors.phone}</div>}
                     </div>
-                    <input type="submit" value="Add Contact" className="btn btn-light btn-block" />
+                    <input type="submit" value="Update Contact" className="btn btn-light btn-block" />
                   </form>
                 </div>
                 

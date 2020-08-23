@@ -29,7 +29,6 @@ class AddContact extends Component {
     const { name, email, phone } = this.state; // instead of typing this.state.name
     
     // Check for Errors
-    
     if (name === ''){
       // this sets errors.name state value
       this.setState({ errors: {name: 'Name is required '}});
@@ -59,6 +58,8 @@ class AddContact extends Component {
     console.log(newContact);
     // this is where we would call our dispatch function
     dispatch({ type: 'ADD_CONTACT', payload: newContact});
+    // redirect the browser back to the contacts page ('/')
+    this.props.history.push("/");
   }
   
   render() {

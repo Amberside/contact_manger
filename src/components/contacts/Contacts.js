@@ -6,6 +6,7 @@ import { Consumer } from '../../context';
 class Contacts extends Component {
     
   // // The deleteContact function
+  // this is not needed as we are now doing this from the SingleContact component
   // deleteContact = (id)  => {
   //   console.log("Deleting contact: " + id);
   //   // add code here to change the state. 
@@ -33,6 +34,7 @@ class Contacts extends Component {
                   // This passes the contact object to the Contact component
                   <SingleContact key={contact.id} contact={contact} 
                   // This is passing the deleteContact function to the Contact component
+                  // we now delete the contact from the SingleContact component
                     // delContact={this.deleteContact.bind(contact.id)}
                   />
                 ))
