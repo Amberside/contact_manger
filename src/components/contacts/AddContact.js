@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import classnames from 'classnames';
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 import { Consumer } from '../../context';
+import axios from 'axios';
 
 class AddContact extends Component {
   // This is the state for the component, 
@@ -23,7 +24,7 @@ class AddContact extends Component {
   }
 
   // this function will be called when the form is submitted.
-  onSubmit = (dispatch, e) => {
+  onSubmit = async(dispatch, e) => {
     e.preventDefault();
     // creating variables to store our state values.
     const { name, email, phone } = this.state; // instead of typing this.state.name
@@ -49,15 +50,16 @@ class AddContact extends Component {
     
     // create a newContact object 
     const newContact = {
-      id: uuidv4(),
+      // id: uuidv4(),
       name,
       email,
       phone
     }
      // send the newcontact to an api or state managment.
     console.log(newContact);
+    const res = await axios.post('https://jsonplaceholder.typicode.com/users', newContact);
     // this is where we would call our dispatch function
-    dispatch({ type: 'ADD_CONTACT', payload: newContact});
+    dispatch({ type: 'ADD_CONTACT', payload: res.data});
     // redirect the browser back to the contacts page ('/')
     this.props.history.push("/");
   }

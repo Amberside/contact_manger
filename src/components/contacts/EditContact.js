@@ -13,6 +13,10 @@ class EditContact extends Component {
   emailInput = React.createRef();
   phoneInput = React.createRef();
 
+  componentDidMount(){
+    // update state in here
+  }
+  
   // this function will be called when the form is submitted.
   handleSubmit = (dispatch, e) => {
     e.preventDefault();
@@ -66,6 +70,7 @@ class EditContact extends Component {
   render() {
     // pull out the id from the url
     const cid = this.props.match.params;
+    // { id: "1" } (depending on the contact you are editing. )
     // pull the errors out of state.
     const { errors } = this.state;
     return (
@@ -75,6 +80,7 @@ class EditContact extends Component {
           // get the contact from the state by finding the contact in the 
           // contacts array by matching the cont.id to the cid from the url
           const contact = contacts.find(cont => cont.id === cid.id);
+          
           return (
             <Fragment>
               <h1 className="display-4 text-primary">Edit Contact</h1>
