@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Consumer } from '../../context';
+import axios from 'axios';
 
 
 class SingleContact extends Component {
@@ -15,12 +16,15 @@ class SingleContact extends Component {
     this.setState({ showContactInfo: !this.state.showContactInfo });
   }
   
-  delClick = (id, dispatch) => {
+  delClick = async(id, dispatch) => {
     console.log("delete: " + id);
+    //code to make sure you want to delete the contact 
+    alert('Are you sure?');
     // this if for the old way when we passed the the function through.
     // This calls the function in contacts.js (parent component) and will pass the id through.
     // this.props.delContact(id);
     // we now dispatch our action to the reducer so it can update the state.
+    await axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`)
     dispatch({ type: 'DELETE_CONTACT', payload: id });
   }
   
