@@ -13,6 +13,7 @@ class EditContact extends Component {
   };
   
   // // create the refs to hold the values from the form.
+  // This is the same as using document.getElementById('hello)
   // nameInput = React.createRef();
   // emailInput = React.createRef();
   // phoneInput = React.createRef();

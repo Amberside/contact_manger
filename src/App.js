@@ -18,7 +18,6 @@ import Test from './components/test/Test';
 import NotFound from './components/pages/NotFound';
 
 class App extends Component {
-  
   render(){
      // Create a Font awesome library
     library.add(faPencilAlt, faTimes, faHome, faPlus, faQuestion, faSortDown, faExclamationTriangle)

@@ -35,7 +35,7 @@ class Contacts extends Component {
                   <SingleContact key={contact.id} contact={contact} 
                   // This is passing the deleteContact function to the Contact component
                   // we now delete the contact from the SingleContact component
-                    // delContact={this.deleteContact.bind(contact.id)}
+                  // delContact={this.deleteContact.bind(contact.id)}
                   />
                 ))
               }
